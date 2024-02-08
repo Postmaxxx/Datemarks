@@ -28,7 +28,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
 				<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
 				<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
 				<link rel="manifest" crossOrigin="use-credentials" href="./manifest.json" />
-				<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0e7040" />
+				<link rel="mask-icon" href="./safari-pinned-tab.svg" color="#0e7040" />
 				<meta name="msapplication-TileColor" content="#0e7040" />
 				<meta name="theme-color" content="#0e7040" />
 				{/* <link rel="preload" href="..assets/fonts/Inter-Regular.woff2" as="font" type="font/woff2" />
