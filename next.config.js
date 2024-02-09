@@ -5,12 +5,18 @@ const isGithubActions = process.env.GITHUB_ACTIONS || false
 let assetPrefix = '.'
 let basePath = ''
 
-if (isGithubActions) {
-  const repo = process.env.GITHUB_REPOSITORY.replace(/.*?\//, '')
-  //assetPrefix = `/${repo}/`
-  //basePath = `/${repo}`
-}
+// for gh-pages
+// if (isGithubActions) {
+//   const repo = process.env.GITHUB_REPOSITORY.replace(/.*?\//, '')
+//   assetPrefix = `/${repo}/`
+//   basePath = `/${repo}`
+// }
 
+//for AWS
+if (isGithubActions) {
+	const repo = process.env.GITHUB_REPOSITORY.replace(/.*?\//, '')
+
+}
 
 // const mode = process.env.NODE_ENV?.trim() || 'development';
 
