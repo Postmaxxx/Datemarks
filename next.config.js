@@ -23,16 +23,39 @@ if (isGithubActions) {
 
 
 
+
+//for Static pages
+// const nextConfig = {
+// 	assetPrefix: assetPrefix,
+// 	basePath: basePath,
+// 	distDir: 'build',
+// 	output: "export",
+// 	images: {
+// 		unoptimized: true,
+// 	},
+// 	// reactStrictMode: true,
+// 	// trailingSlash: true,
+// 	// redirects: async () => {
+// 	// 	return [
+// 	// 	  {
+// 	// 		source: '/',
+// 	// 		destination: '/login',
+// 	// 		permanent: true,
+// 	// 	  },
+// 	// 	];
+// 	//   },
+// }
+
+//for SSR
 const nextConfig = {
-	// images: {
-	// 	deviceSizes: [480, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-	// },
-	assetPrefix: assetPrefix,
-	basePath: basePath,
-	output: "export",
 	images: {
+		// deviceSizes: [360, 480, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
 		unoptimized: true,
 	},
+	assetPrefix: assetPrefix,
+	basePath: basePath,
+	distDir: 'out',
+
 	// reactStrictMode: true,
 	// trailingSlash: true,
 	// redirects: async () => {
@@ -45,5 +68,6 @@ const nextConfig = {
 	// 	];
 	//   },
 }
+
 
 module.exports = nextConfig

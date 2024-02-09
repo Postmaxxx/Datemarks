@@ -7,13 +7,33 @@ import { useEffect, useRef, useState } from 'react'
 import { useAppContext } from '@/hooks/useAppContext'
 import ModalMessage from '../ModalMessage/ModalMessage'
 import Preloader from '@/components/Preloader/Preloader'
+// import 'server-only'
 
-
+// const sentMsgToTg = async ({email}: {email: string}) => {
+// 	const urlMessage= `https://api.telegram.org/bot${process.env.NEXT_PUBLIC_TG_TOKEN}/sendMessage`;
+// 	try { //send text to TG
+// 		const response = await fetch(urlMessage, {
+// 			method: 'POST',
+// 			headers: { 'Content-Type': 'application/json' },
+// 			body: JSON.stringify({ chat_id: process.env.NEXT_PUBLIC_TG_CHAT_ID, text: `New email: ${email}` })
+// 		})
+// 		if (!response.ok) {
+// 			console.log('Error while sending message using TG.', response);
+// 			return
+// 		}
+// 		console.log('Sent!');
+// 	} catch (e) {
+// 		console.log(`Something wrong while sending message to TG, try again later. Error: ${e}`)
+// 	}
+// }
 
 const InfoCreateEvent: React.FC = ():JSX.Element => {
 	const { modal } = useAppContext()
 	const _email = useRef<IInputFunctions>(null)
 	const [sending, setSending] = useState<boolean>(false)
+
+
+
 
 	useEffect(() => {
 		if (sending) {
@@ -54,31 +74,9 @@ const InfoCreateEvent: React.FC = ():JSX.Element => {
 		const email = _email.current?.getValue()
 		setSending(true)
 		
-				//mockup for sending to TG
-				const urlMessage= `https://api.telegram.org/bot${process.env.NEXT_PUBLIC_TG_TOKEN}/sendMessage`;
-				try { //send text to TG
-					const response = await fetch(urlMessage, {
-						method: 'POST',
-						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify({ chat_id: process.env.NEXT_PUBLIC_TG_CHAT_ID, text: `New email: ${email}` })
-					})
-					if (!response.ok) {
-						console.log('Error while sending message using TG.', response);
-						return
-					}
-					console.log('Sent!');
-				} catch (e) {
-					console.log(`Something wrong while sending message to TG, try again later. Error: ${e}`)
-				}
-
-
-
-
-
 		//send data
 		try {
 			const response: Response = await fetch(requests.sendEmail.url, {
-                //signal: controller.signal,
                 method: requests.sendEmail.method,
                 headers: {
                     "Content-Type": 'application/json',
@@ -86,8 +84,8 @@ const InfoCreateEvent: React.FC = ():JSX.Element => {
 				body: JSON.stringify({ email })
             })
 			
+			const result: {message: string} = await response.json()
 			if (!response.ok) {
-				const result: {message: string} = await response.json()
 				modal?.current?.openModal({
 					name: 'error',
 					onClose: (() => modal.current?.closeCurrent()),
@@ -110,7 +108,7 @@ const InfoCreateEvent: React.FC = ():JSX.Element => {
 					_email.current?.setValue('')
 				}),
 				children: <ModalMessage 
-					texts={['Your email has been sent']}
+					texts={[result.message]}
 					button='Close'
 					header='Success'
 					status='success'
@@ -154,6 +152,8 @@ const InfoCreateEvent: React.FC = ():JSX.Element => {
 		</div>
 	)
 }
+
+
 
 
 export default InfoCreateEvent
