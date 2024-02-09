@@ -1,11 +1,12 @@
 {
-  "name": "Varias",
-  "version": "1.0.0",
+  "name": "DateMarks",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "set NEXT_PUBLIC_APP_ENV=development && next dev -p 3200",
     "build": "set NEXT_PUBLIC_APP_ENV=production && next build",
     "start": "set NEXT_PUBLIC_APP_ENV=production && npx serve@latest out",
+    "prod": "set NEXT_PUBLIC_APP_ENV=production && npm run build && next start -p 443",
     "lint": "next lint",
     "export": "next export"
   },
@@ -15,7 +16,8 @@
     "next-auth": "^4.24.5",
     "react": "^18",
     "react-dom": "^18",
-    "sass": "^1.69.7"
+    "sass": "^1.69.7",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@types/node": "^20",
