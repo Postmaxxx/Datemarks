@@ -56,9 +56,9 @@ jobs:
               cd /home/ubuntu/datemarks/app &&
               npm i &&
               echo Deps installed &&
-              pm2 delete -- silent datemarks_ci-cd --watch || true &&
+              pm2 delete --silent datemarks_ci-cd --watch || true &&
               echo pm2: datemarks_ci-cd removed to be updated &&
-              pm2 start -- name datemarks_ci-cd npm -- run server_ci-cd --update-env &&
+              pm2 start --name datemarks_ci-cd npm -- run server_ci-cd --update-env &&
               echo pm2: new datemarks_ci-cd installed &&
               pm2 save &&
               echo Finish
