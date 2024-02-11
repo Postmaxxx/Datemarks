@@ -60,7 +60,7 @@ if (isGithubActions) {
 //for SSR
 const nextConfig = {
 	images: {
-		deviceSizes: [300, 360, 480, 640, 760, 828, 1080, 1200, 1920, 2048, 3840],
+		deviceSizes: [300, 360, 420, 480, 640, 760, 890, 1080, 1200, 1600, 1920], //2048, 3840
 		// unoptimized: true,
 	},
 	assetPrefix: assetPrefix,
