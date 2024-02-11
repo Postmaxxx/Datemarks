@@ -7,33 +7,13 @@ import { useEffect, useRef, useState } from 'react'
 import { useAppContext } from '@/hooks/useAppContext'
 import ModalMessage from '../ModalMessage/ModalMessage'
 import Preloader from '@/components/Preloader/Preloader'
-// import 'server-only'
 
-// const sentMsgToTg = async ({email}: {email: string}) => {
-// 	const urlMessage= `https://api.telegram.org/bot${process.env.NEXT_PUBLIC_TG_TOKEN}/sendMessage`;
-// 	try { //send text to TG
-// 		const response = await fetch(urlMessage, {
-// 			method: 'POST',
-// 			headers: { 'Content-Type': 'application/json' },
-// 			body: JSON.stringify({ chat_id: process.env.NEXT_PUBLIC_TG_CHAT_ID, text: `New email: ${email}` })
-// 		})
-// 		if (!response.ok) {
-// 			console.log('Error while sending message using TG.', response);
-// 			return
-// 		}
-// 		console.log('Sent!');
-// 	} catch (e) {
-// 		console.log(`Something wrong while sending message to TG, try again later. Error: ${e}`)
-// 	}
-// }
 
 const InfoCreateEvent: React.FC = ():JSX.Element => {
 	const { modal } = useAppContext()
 	const _email = useRef<IInputFunctions>(null)
+	const _name = useRef<IInputFunctions>(null)
 	const [sending, setSending] = useState<boolean>(false)
-
-
-
 
 	useEffect(() => {
 		if (sending) {
@@ -51,8 +31,8 @@ const InfoCreateEvent: React.FC = ():JSX.Element => {
 
 	const onEmailSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		const fielsList = [_email]
-		const errors: string[] = fielsList
+		const fieldsList = [_name, _email]
+		const errors: string[] = fieldsList
 			.map(el => el.current?.getError()?.errorText)
 			.filter(el => el) as string[]
 		if (errors.length > 0) {
@@ -71,6 +51,7 @@ const InfoCreateEvent: React.FC = ():JSX.Element => {
 			return
 		}
 
+		const name = _name.current?.getValue()
 		const email = _email.current?.getValue()
 		setSending(true)
 		
@@ -81,7 +62,7 @@ const InfoCreateEvent: React.FC = ():JSX.Element => {
                 headers: {
                     "Content-Type": 'application/json',
                 },
-				body: JSON.stringify({ email })
+				body: JSON.stringify({ email, name })
             })
 			
 			const result: {message: string} = await response.json()
@@ -105,6 +86,7 @@ const InfoCreateEvent: React.FC = ():JSX.Element => {
 				name: 'success',
 				onClose: (() => {
 					modal.current?.closeCurrent()
+					_name.current?.setValue('')
 					_email.current?.setValue('')
 				}),
 				children: <ModalMessage 
@@ -112,7 +94,11 @@ const InfoCreateEvent: React.FC = ():JSX.Element => {
 					button='Close'
 					header='Success'
 					status='success'
-					onClick={() => modal.current?.closeCurrent()}
+					onClick={() => {
+						modal.current?.closeCurrent()
+						_name.current?.setValue('')
+						_email.current?.setValue('')
+					}}
 				/>
 			})
 		} catch (error) {
@@ -138,6 +124,14 @@ const InfoCreateEvent: React.FC = ():JSX.Element => {
 		<div className='block_info-create-events'>
 			<h2>Create events in minutes</h2>
 			<form onSubmit={onEmailSubmit}>
+				<Input 
+					ref={_name}
+					name='name'
+					valueType='name'
+					id='name'
+					placeholder='Your name'
+					description='Enter your name to subscribe'
+				/>
 				<Input 
 					ref={_email}
 					name='email'

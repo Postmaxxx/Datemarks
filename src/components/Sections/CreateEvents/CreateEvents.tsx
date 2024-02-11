@@ -13,7 +13,7 @@ const SectionCreateEvents = () => {
 					<BlockInfo 
 						img={{
 							src: image1, 
-							alt: '!!!',
+							alt: 'Datemarks logo',
 							pos: 'rt'
 						}}
 					>

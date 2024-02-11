@@ -46,9 +46,19 @@
 		flex-direction: column;
 		align-items: stretch;
 		gap: 30px;
+		justify-content: center;
 
 		@include respond-to(sm) {
 			flex-direction: row;
+		}
+
+		
+		@include respond-to(md) {
+			flex-wrap: wrap;
+		}
+
+		@include respond-to(lg) {
+			flex-wrap: nowrap;
 		}
 
 		& input {
@@ -56,6 +66,18 @@
 
 			&:focus {
 				border-color: var(--primary_color);
+			}
+		}
+
+		& button {
+			@include respond-to(xs) {
+				width: 200px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			@include respond-to(sm) {
+				width: auto;
 			}
 		}
 
