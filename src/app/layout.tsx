@@ -14,9 +14,9 @@ export const metadata: Metadata = {
 		template: '%s | DateMarks'
 	},
 	
-	description: "Datemarks - app for create and attend events",
+	description: "Datemarks - app for creating events",
 	keywords: ['DateMarks', 'meetings', 'events'],
-	authors: [{ name: 'Stas Yem', url: 'https://StasYem.com' }, { name: 'Max', url: 'https://postnikov.dev' }],
+	authors: [{ name: 'Stas Yem', url: 'https://Stas-Yem.com' }, { name: 'Max', url: 'https://postnikov.dev' }],
 	creator: 'Max Postnikov | https://postnikov.dev',
 };
 
