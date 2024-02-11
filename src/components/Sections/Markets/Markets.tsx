@@ -15,7 +15,7 @@ const SectionMarkets = () => {
 					<BlockInfo 
 						img={{
 							src: image1 as unknown as string, 
-							alt: '!!!',
+							alt: 'Mobile phones with our app on it',
 							pos: 'rt'
 						}}
 					>

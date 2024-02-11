@@ -1,10 +1,12 @@
 // import LangSw from '../LangSw/LangSw'
 import Link from 'next/link'
-import Nav from '../Nav/Nav'
+// import Nav from '../Nav/Nav'
 // import ThemeSw from '../ThemeSw/ThemeSw'
 import './header.scss'
 import { linkHome } from '@/assets/js/consts'
-// import logo from '@/assets/images/logo.png'
+import Image from 'next/image'
+import logo from '@/assets/images/logo.png'
+import { makeImageSizes } from '@/assets/js/tools'
 // import Image from 'next/image'
 // import { makeImageSizes } from '@/assets/js/tools'
 // import Link from 'next/link'
@@ -16,16 +18,14 @@ const Header = () => {
 			<div className="container_page container_content header__content">
 				<Link className='header__company' href={linkHome}>Datemarks</Link>
 				{/* <div className="logo-wrapper mr-auto relative">
-					<Link href={homeLink}>
-						<Image 
-							className='header__logo w-10'
-							src={logo.src} 
-							fill
-							alt='Our logo'
-							sizes={makeImageSizes({start: '35px', sm: '40px', md: '50px' })}
-							loading='lazy'
-						/>
-					</Link>
+					<Image 
+						className='header__logo'
+						src={logo.src} 
+						alt='Datemarks logo'
+						width={30}
+						height={30}
+						sizes={'(min-width: 768px) 20px, (min-width: 640px) 5px, (min-width: 1px) 10px'}
+					/>
 				</div> */}
 				
 				{/* <Nav/> */}

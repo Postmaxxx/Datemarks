@@ -1,6 +1,7 @@
 import React from 'react'
 import './block-info.scss'
 import Image from 'next/image'
+import { makeImageSizes } from '@/assets/js/tools'
 
 
 interface IBlockInfo {
@@ -23,6 +24,8 @@ const BlockInfo: React.FC<IBlockInfo> = ({children, img}): JSX.Element => {
 					<Image 
 						src={img.src}
 						alt={img.alt}
+						sizes={makeImageSizes({start: '100vw', xs: '400px', md: '40vw', xl: '420px' })}
+						loading='lazy'
 					/>
 				</div>
 			</div>
