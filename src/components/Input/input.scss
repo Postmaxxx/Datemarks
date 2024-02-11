@@ -85,6 +85,7 @@
 		transform: translate(-50%, -50%);
 		transition: opacity $transition_fast;
 		pointer-events: none;
+		visibility: visible;
 	}
 
 	&.incorrect-value {
