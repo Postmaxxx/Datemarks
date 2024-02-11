@@ -99,7 +99,15 @@ footer {
 			justify-content: center;
 			align-items: center;
 			gap: 10px;
+			text-align: center;
+			margin-top: 20px;
+			margin-bottom: 20px;
 
+			@include respond-to(sm) {
+				margin-top: 10px;
+				margin-bottom: 10px;
+				
+			}
 		}
 		
 		a {
