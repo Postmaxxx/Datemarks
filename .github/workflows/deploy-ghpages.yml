@@ -35,8 +35,8 @@ jobs:
       - name: Deploy to EC2
         uses: burnett01/rsync-deployments@6.0.0
         with:
-          switches: -avzr --delete --exclude="node_modules" --exclude=".env.*" --exclude="build" --exclude="*.pem" --filter=""
-          path: backend/
+          switches: -avzr --delete --exclude="node_modules" --exclude=".env.*" --exclude=".next" --exclude="*.pem" --filter=""
+          path: /
           remote_path: /home/ubuntu/datemarks/app
           remote_host: ${{ secrets.EC2_HOST }}
           remote_user: ${{ secrets.EC2_USERNAME }}
@@ -56,9 +56,9 @@ jobs:
               cd /home/ubuntu/datemarks/app &&
               npm i &&
               echo Deps installed &&
-              pm2 delete -- silent datemarks_ci-cd --watch || true &&
+              pm2 delete --silent datemarks_ci-cd --watch || true &&
               echo pm2: datemarks_ci-cd removed to be updated &&
-              pm2 start -- name datemarks_ci-cd npm -- run server_ci-cd --update-env &&
+              pm2 start --name datemarks_ci-cd npm -- run server_ci-cd --update-env &&
               echo pm2: new datemarks_ci-cd installed &&
               pm2 save &&
               echo Finish

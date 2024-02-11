@@ -1,12 +1,14 @@
 {
   "name": "DateMarks",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "scripts": {
-    "dev": "set NEXT_PUBLIC_APP_ENV=development && next dev -p 3200",
+    "dev": "set NEXT_PUBLIC_APP_ENV=development && next dev -p 80",
+    "dev_s": "set NEXT_PUBLIC_APP_ENV=development && next dev -p 443 --experimental-https",
     "build": "set NEXT_PUBLIC_APP_ENV=production && next build",
     "start": "set NEXT_PUBLIC_APP_ENV=production && npx serve@latest out",
     "prod": "set NEXT_PUBLIC_APP_ENV=production && npm run build && next start -p 443",
+    "server_ci-cd": "next start -p 3200",
     "lint": "next lint",
     "export": "next export"
   },
@@ -17,7 +19,8 @@
     "react": "^18",
     "react-dom": "^18",
     "sass": "^1.69.7",
-    "server-only": "^0.0.1"
+    "server-only": "^0.0.1",
+    "sharp": "^0.33.2"
   },
   "devDependencies": {
     "@types/node": "^20",
